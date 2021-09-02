@@ -15,8 +15,8 @@ from db_functions import create_new_ct, list_of_accounts, remove_account, valida
 from datetime import datetime
 import itertools
 
-#token = '1974255060:AAFosMbvKycoKRydyPdi4yjflv8031SW4mE' # боевой
-token = '1938283222:AAEe7C80RbtpAjW7BVBzt6qISW8VnzIpg0A'  # тестовый
+token = '1974255060:AAFosMbvKycoKRydyPdi4yjflv8031SW4mE' # боевой
+#token = '1938283222:AAEe7C80RbtpAjW7BVBzt6qISW8VnzIpg0A'  # тестовый
 bot = Bot(token=token)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
