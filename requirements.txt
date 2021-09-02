@@ -1,0 +1,4 @@
+aiogram==2.13
+requests==2.23.0
+pandas
+sqlite3
