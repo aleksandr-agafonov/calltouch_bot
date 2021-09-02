@@ -1,1 +1,1 @@
-worker: python3 ad_helper_bot.py
+worker: python3 CallTouchBot.py
