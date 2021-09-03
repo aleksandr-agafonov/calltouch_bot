@@ -75,21 +75,31 @@ def get_today_data(user_id, cabinet_id, days_back):
 
     df = pd.DataFrame(req.json())
 
-    total_calls = get_values_or_zero(df['callId'].nunique())  # всего звонков
-    unique_calls = get_values_or_zero(df[df['uniqueCall'] == True]['callId'].nunique())  # уникальные звонки
-    target_calls = get_values_or_zero(df[df['targetCall'] == True]['callId'].nunique())  # целевые звонки
-    unique_target_calls = get_values_or_zero(df[(df['uniqueCall'] == True) & (df['targetCall'] == True)]['callId'].nunique())  #уникально-целевые звонки
+    if df.empty:
+        result_dict['date'] = get_date
+        result_dict['total_calls'] = 0
+        result_dict['unique_calls'] = 0
+        result_dict['target_calls'] = 0
+        result_dict['unique_target_calls'] = 0
 
-    result_dict['date'] = get_date
-    result_dict['total_calls'] = total_calls
-    result_dict['unique_calls'] = unique_calls
-    result_dict['target_calls'] = target_calls
-    result_dict['unique_target_calls'] = unique_target_calls
+    else:
+        total_calls = get_values_or_zero(df['callId'].nunique())  # всего звонков
+        unique_calls = get_values_or_zero(df[df['uniqueCall'] == True]['callId'].nunique())  # уникальные звонки
+        target_calls = get_values_or_zero(df[df['targetCall'] == True]['callId'].nunique())  # целевые звонки
+        unique_target_calls = get_values_or_zero(
+            df[(df['uniqueCall'] == True) & (df['targetCall'] == True)]['callId'].nunique())  # уникально-целевые звонки
+
+        result_dict['date'] = get_date
+        result_dict['total_calls'] = total_calls
+        result_dict['unique_calls'] = unique_calls
+        result_dict['target_calls'] = target_calls
+        result_dict['unique_target_calls'] = unique_target_calls
 
     return result_dict
 
-# get_today_data(1673451611, '45840', 0)
 
+# a = get_today_data(1673451611, '45840', 1)
+# print(a)
 # id = 45105
 # server = 'https://api.calltouch.ru/'
 # token = 'iOT/yJ8iucx0PvB8S0sJvRdjusF75/jewx21muGauttSs'
