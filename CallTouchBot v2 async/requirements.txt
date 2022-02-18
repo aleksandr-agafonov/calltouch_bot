@@ -1,4 +1,0 @@
-aiogram==2.13
-asyncio
-nest_asyncio
-aiosqlite
